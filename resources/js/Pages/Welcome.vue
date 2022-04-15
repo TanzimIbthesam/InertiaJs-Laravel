@@ -1,13 +1,12 @@
 <template>
     Welcomee-{{name}}
-    <div v-for="framework in frameworks" :key="framework.id">
-          {{framework}}
-    </div>
+    <Nav />
 </template>
 
 
 
  <script setup>
+ import Nav from '../Shared/Nav.vue'
 const props=defineProps({
     name:{
         type:String,
