@@ -9,7 +9,7 @@ createInertiaApp({
       .mount(el)
   },
 })
-InertiaProgress.init()
+// InertiaProgress.init()
 
 InertiaProgress.init({
   // The delay after which the progress bar will
