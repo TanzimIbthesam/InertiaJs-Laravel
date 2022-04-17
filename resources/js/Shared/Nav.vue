@@ -3,7 +3,8 @@
    
     <li>
     <Navlink
-     href='/'
+     
+     :href="route('home')"
     :active="$page.component==='Welcome'"> 
     Home
     </Navlink>
@@ -23,7 +24,7 @@
     </li>
     <li> 
         <Navlink
-     href='/users'
+     :href="route('users')"
     :active="$page.component==='Users'"> 
     Users
     </Navlink>
