@@ -1,5 +1,5 @@
 <template>
-<ul>
+<ul class="flex justify-left">
    
     <li>
     <Navlink
@@ -40,6 +40,7 @@
 </template>
 
 <script setup>
+//import Link Not needed when using a Global component in app.js
 import { Link } from '@inertiajs/inertia-vue3'
  import Navlink from './Navlink.vue'
 </script>

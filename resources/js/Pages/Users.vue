@@ -19,7 +19,7 @@
 
 <script setup>
 import Layout from '../Shared/Layout.vue'
-import { Link } from '@inertiajs/inertia-vue3'
+
 const props=defineProps({
  time:{
      type:String

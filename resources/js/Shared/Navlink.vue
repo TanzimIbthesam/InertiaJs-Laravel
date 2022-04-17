@@ -11,7 +11,8 @@
 </template>
 
 <script setup>
-import { Link } from '@inertiajs/inertia-vue3'
+//import Link Not needed when using a Global component in app.js
+ import { Link } from '@inertiajs/inertia-vue3'
 const props=defineProps({
    active:{
        

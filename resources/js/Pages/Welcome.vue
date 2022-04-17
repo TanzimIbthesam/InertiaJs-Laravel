@@ -1,7 +1,7 @@
 <template>
     
     <Layout>
-        Welcomee-{{$page.props.auth.user.username}}
+       Home page
     </Layout>
 </template>
 

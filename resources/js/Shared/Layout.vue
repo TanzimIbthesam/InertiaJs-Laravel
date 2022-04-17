@@ -1,5 +1,11 @@
 <template>
+<div class="flex justify-between bg-gray-200  px-4 py-2 font-serif">
+ Welcome-{{$page.props.auth.user.username}}
   <Nav />
+</div>
+
+  <!-- We can define global props in App\Http\Inertia Request middleware -->
+ 
   <slot />
 </template>
 
