@@ -27,17 +27,17 @@ Route::get('/', function () {
     //              'Laravel','Inertia','Vue'
     //          ]
     // ]);
-});
+})->name('home');
   
 Route::get('/users',function(){
  return Inertia::render('Users',[
      'time'=>now()->toTimeString()
  ]);
-});
+})->name('users');
 Route::get('/settings',function(){
 //  return inertia('Settings');
 return Inertia::render('Settings');
-});
+})->name('settings');
 
 Route::post('/logout',function(){
     //  dd('Logout');

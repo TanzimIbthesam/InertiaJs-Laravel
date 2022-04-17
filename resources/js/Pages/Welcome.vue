@@ -1,12 +1,14 @@
 <template>
-    Welcomee-{{name}}
-    <Nav />
+    
+    <Layout>
+        Welcomee-{{name}}
+    </Layout>
 </template>
 
 
 
  <script setup>
- import Nav from '../Shared/Nav.vue'
+ import Layout from '../Shared/Layout.vue'
 const props=defineProps({
     name:{
         type:String,

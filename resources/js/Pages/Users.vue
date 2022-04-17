@@ -1,8 +1,10 @@
 <template>
-  Users
+  
+  <Layout>
+    Users
+  </Layout>
   
   
-  <Nav />
   <div style="margin-top:400px">
      The current time isss-{{time}}
       
@@ -16,7 +18,7 @@
 </template>
 
 <script setup>
-import Nav from '../Shared/Nav.vue'
+import Layout from '../Shared/Layout.vue'
 import { Link } from '@inertiajs/inertia-vue3'
 const props=defineProps({
  time:{

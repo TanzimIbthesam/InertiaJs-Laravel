@@ -10,8 +10,13 @@
     
     </li>
     <li>
+    <!-- <Navlink
+      href='/settings'
+    :active="$page.component==='Settings'"> 
+    Settings
+    </Navlink> -->
     <Navlink
-     href='/settings'
+      :href="route('settings')"
     :active="$page.component==='Settings'"> 
     Settings
     </Navlink>
