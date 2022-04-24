@@ -1,5 +1,5 @@
 <template>
- 
+ <Head title="Settings Page" />
   <Layout>
      Settings 
   </Layout>

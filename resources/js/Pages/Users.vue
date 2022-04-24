@@ -1,5 +1,5 @@
 <template>
-  
+  <Head title="Users" />
   <Layout>
     Users
   </Layout>

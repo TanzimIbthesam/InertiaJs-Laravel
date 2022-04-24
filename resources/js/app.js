@@ -1,5 +1,5 @@
 import { createApp, h } from 'vue'
-import { createInertiaApp,Link } from '@inertiajs/inertia-vue3'
+import { createInertiaApp,Link,Head } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import Layout from './Shared/Layout'
 createInertiaApp({
@@ -15,7 +15,8 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
     .mixin({ methods:{route}})
-      // .component("Link",Link)
+       .component("Link",Link)
+       .component("Head",Head)
       .use(plugin)
       
       .mount(el)

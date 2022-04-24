@@ -1,5 +1,5 @@
 <template>
-    
+    <Head title="Home Page" />
     <Layout>
        Home page-{{name}}
     </Layout>
