@@ -1,20 +1,14 @@
 <template>
     
     <Layout>
-       Home page
+       Home page-{{name}}
     </Layout>
 </template>
 
 
-<script>
-import Layout from '../Shared/Layout.vue'
-export default{
-    layout: Layout,
-}
-
-</script>
 <script setup>
-
+import {ref} from 'vue'
+const name=ref("Tanzim");
 </script>
 
 
