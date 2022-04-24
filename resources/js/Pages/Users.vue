@@ -16,16 +16,21 @@
  Refresh
  </Link>
 </template>
-
-<script setup>
+<script>
 import Layout from '../Shared/Layout.vue'
-
-const props=defineProps({
- time:{
-     type:String
- }
-});
+export default{
+    layout: Layout,
+}
+props:{
+     time:{
+         type:String
+         
+     }
+   
+}
 </script>
+
+
 
 <style>
 

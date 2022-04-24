@@ -6,18 +6,19 @@
 </template>
 
 
-
- <script setup>
- import Layout from '../Shared/Layout.vue'
-const props=defineProps({
-    name:{
-        type:String,
-        required:true
-    },
-    frameworks:{
-        type:Array
-    }
-})
-
+<script>
+import Layout from '../Shared/Layout.vue'
+export default{
+    layout: Layout,
+}
 
 </script>
+<script setup>
+
+</script>
+
+
+
+
+
+
