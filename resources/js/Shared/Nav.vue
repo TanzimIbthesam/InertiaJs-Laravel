@@ -24,7 +24,7 @@
     </li>
     <li> 
         <Navlink
-     :href="route('users')"
+     :href="route('users.index')"
     :active="$page.component==='Users'"> 
     Users
     </Navlink>

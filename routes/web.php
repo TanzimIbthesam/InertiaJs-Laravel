@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
@@ -61,31 +62,31 @@ Route::get('/', function () {
 
 
 // })->name('users');
-Route::get('/users', function (Request $request) {
-     $search = $request->query('search');
-    return Inertia::render('Users', [
-        'users' => User::query()->when($search, fn ($query) =>
-        $query->where('name', 'LIKE', "%{$search}%")
-    )->orderByDesc('created_at')
-    ->paginate(10)
-    ->through(fn($user) => [
-        'id' => $user->id,
-        'name' => $user->name
-])
-    ->withQueryString(),
-    // $search = $request->query('search');
+// Route::get('/users', function (Request $request) {
+//      $search = $request->query('search');
+//     return Inertia::render('Users', [
+//         'users' => User::query()->when($search, fn ($query) =>
+//         $query->where('name', 'LIKE', "%{$search}%")
+//     )->orderByDesc('created_at')
+//     ->paginate(10)
+//     ->through(fn($user) => [
+//         'id' => $user->id,
+//         'name' => $user->name
+// ])
+//     ->withQueryString(),
+//     // $search = $request->query('search');
         
-            'filters' => $request->only(['search'])
+//             'filters' => $request->only(['search'])
             
-            // ->through(fn($user) => [
-            //     'id' => $user->id,
-            //     'name' => $user->name
-            // ]),
+//             // ->through(fn($user) => [
+//             //     'id' => $user->id,
+//             //     'name' => $user->name
+//             // ]),
 
-        //   'filters' => $request->only(['search'])
-    ]);
-})->name('users');
-
+//         //   'filters' => $request->only(['search'])
+//     ]);
+// })->name('users');
+Route::resource('users',UserController::class);
 Route::get('/settings',function(){
 //  return inertia('Settings');
 return Inertia::render('Settings');
