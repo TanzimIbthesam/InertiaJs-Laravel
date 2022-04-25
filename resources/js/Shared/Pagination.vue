@@ -5,8 +5,8 @@
   :key="link.id"
   :href="link.url"
   v-html="link.label"
-  class="px-1 text-red-300"
-  :class="link.url ? 'text-blue-600': 'text-gray-600'"
+  class="px-1"
+  :class="{'text-gray-600': !link.url,'font-bold':link.active}"
   />
 </template>
 

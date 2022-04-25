@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\User;
+ use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,24 +32,60 @@ Route::get('/', function () {
     //          ]
     // ]);
 })->name('home');
-  
+ 
 // Route::get('/users',function(){
 //  return Inertia::render('Users',[
 //      'time'=>now()->toTimeString()
 //  ]);
 // })->name('users');
-Route::get('/users', function () {
-    // return User::paginate(10);
+// Route::get('/users', function (Request $request) {
+//     // return User::paginate(10);
+//     return Inertia::render('Users', [
+//         'time' => now()->toTimeString(),
+//         'users' => User::query()
+//         ->when($request->input('search'), function ($query, $search) {
+//             $query->where('name', 'like', "%{$search}%");
+//         })
+//         ->withQueryString()
+//         ->paginate(10)
+        
+       
+//         ->through(fn($user)=>[
+//             'id'=>$user->id,
+//              'name'=>$user->name
+//         ]),
+//         // 'users'=>User::select('email')->first()->get()
+//         // User::all()
+//         'filters' => $request->input('search')
+//         ]);
+
+
+// })->name('users');
+Route::get('/users', function (Request $request) {
+     $search = $request->query('search');
     return Inertia::render('Users', [
-        'time' => now()->toTimeString(),
-        'users' => User::paginate(10)
-        // 'users'=>User::select('email')->first()->get()
-        // User::all()
+        'users' => User::query()->when($search, fn ($query) =>
+        $query->where('name', 'LIKE', "%{$search}%")
+    )->orderByDesc('created_at')
+    ->paginate(10)
+    ->through(fn($user) => [
+        'id' => $user->id,
+        'name' => $user->name
+])
+    ->withQueryString(),
+    // $search = $request->query('search');
+        
+            'filters' => $request->only(['search'])
+            
+            // ->through(fn($user) => [
+            //     'id' => $user->id,
+            //     'name' => $user->name
+            // ]),
 
-        ]);
-
-
+        //   'filters' => $request->only(['search'])
+    ]);
 })->name('users');
+
 Route::get('/settings',function(){
 //  return inertia('Settings');
 return Inertia::render('Settings');
