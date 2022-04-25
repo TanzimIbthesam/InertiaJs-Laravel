@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,10 +30,22 @@ Route::get('/', function () {
     // ]);
 })->name('home');
   
-Route::get('/users',function(){
- return Inertia::render('Users',[
-     'time'=>now()->toTimeString()
- ]);
+// Route::get('/users',function(){
+//  return Inertia::render('Users',[
+//      'time'=>now()->toTimeString()
+//  ]);
+// })->name('users');
+Route::get('/users', function () {
+    return Inertia::render('Users', [
+        'time' => now()->toTimeString(),
+        'users' => User::all()->map(fn($user) => [
+            'name' => $user->name
+        ])
+        // User::all()
+
+        ]);
+
+
 })->name('users');
 Route::get('/settings',function(){
 //  return inertia('Settings');

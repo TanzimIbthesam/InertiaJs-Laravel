@@ -1,31 +1,16 @@
 <template>
   <Head title="Users" />
-  <Layout>
+
+  <h1 class="text-3xl">
     Users
-  </Layout>
-  
-  
-  <div style="margin-top:400px">
-     The current time isss-{{time}}
-      
-  </div>
- <Link 
- href="/users"
- preserve-scroll
- >
- Refresh
- </Link>
+  </h1>
+
+  <ul v-for="user in users"
+      :key="user.id">
+    <li>{{user.name}}</li>
+  </ul>
 </template>
+
 <script setup>
-const props=defineProps({
-  time:{
-    type:String
-  }
-})
+defineProps({ users: Array });
 </script>
-
-
-
-<style>
-
-</style>
