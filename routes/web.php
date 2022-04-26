@@ -87,6 +87,7 @@ Route::get('/', function () {
 //     ]);
 // })->name('users');
 Route::resource('users',UserController::class);
+Route::post('/users/store',[UserController::class,'store']);
 Route::get('/settings',function(){
 //  return inertia('Settings');
 return Inertia::render('Settings');
