@@ -25,7 +25,7 @@ class UserRequest extends FormRequest
     {
         return [
             //
-        'name'=>'max:255',
+        'name'=>'required|max:255',
         'email' => 'required|max:255',
         'password' => 'required',
         ];

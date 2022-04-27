@@ -11,12 +11,7 @@
 			<form @submit.prevent="handleSubmit" class="mt-8 space-y-6" >
 				
 				<div class="rounded-md shadow-sm -space-y-px">
-                    <div>
-						<label for="email-address" class="sr-only">Name</label>
-						<input  v-model="form.name" type="text"   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
-                         <div v-if="form.errors.name">{{ form.errors.name}}</div>
-
-					</div>
+                   
 					<div>
 						<label for="email-address" class="sr-only">Email address</label>
 						<input id="email-address" v-model="form.email" type="email"   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
@@ -51,12 +46,12 @@
 <script setup>
 import { useForm } from "@inertiajs/inertia-vue3";
 let form=useForm({
-    name:'',
+   
     email:'',
     password:''
 
 })
-defineProps({
+const props=defineProps({
     errors:{
         type:Object
     }
@@ -64,7 +59,7 @@ defineProps({
 const handleSubmit=()=>{
     //  Inertia.post('/users', form);
     //Much cleaner way 
-    form.post(route('users.store'),form);
+    form.post('/userlogin',form);
    
 }
 </script>

@@ -56,7 +56,7 @@ class UserController extends Controller
         //
       User::create($request->validated()); 
       
-      return Redirect::route('users.index');
+      return Redirect::route('users.index'); 
     }
 
     /**

@@ -32,7 +32,10 @@
          
           >
             <td class="p-4">
-               {{user.name}}
+               
+               <div v-if="user.name">{{user.name}}</div>
+              <div v-else>Name not available</div>
+             
             </td>
             
            
@@ -68,19 +71,14 @@ import Pagination from '../Shared/Pagination.vue'
 // defineProps({ users: Object });
 import { ref, watch } from 'vue';
 import { Inertia } from '@inertiajs/inertia';
+import debounce from "lodash/debounce";
 let props = defineProps({
   users: Object,
   filters: Object,
 });
 let search = ref(props.filters.search);
-watch(search, value => {
-  Inertia.get(
-    '/users',
-    { search: value },
-    {
-      preserveState: true,
-      replace: true,
-    }
-  );
-});
+watch(search, debounce(function (value) {
+  console.log("triggered");
+  Inertia.get('/users', { search: value }, { preserveState: true, replace: true });
+}, 700));
 </script>

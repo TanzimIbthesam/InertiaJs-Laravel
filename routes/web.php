@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -98,3 +99,12 @@ Route::post('/logout',function(){
      //dd foo
      dd(request('foo'));
 });
+
+Route::get('/login',[AuthController::class,'index'])->name('loginpage');
+Route::post('/userlogin',[AuthController::class,'authenticate'])->name('userlogin');
+
+Route::get('/test',function(){
+    //  return inertia('Settings');
+    return Inertia::render('Test.index');
+    })->name('test');
+    
