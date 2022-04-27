@@ -103,8 +103,8 @@ Route::post('/logout',function(){
 Route::get('/login',[AuthController::class,'index'])->name('loginpage');
 Route::post('/userlogin',[AuthController::class,'authenticate'])->name('userlogin');
 
-Route::get('/test',function(){
-    //  return inertia('Settings');
-    return Inertia::render('Test.index');
-    })->name('test');
+Route::get('/testnew',function(){
+      return Inertia::render('Test/index');
+    
+    })->name('testnew');
     

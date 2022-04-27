@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         //
         $search = $request->query('search');
-    return Inertia::render('Users', [
+    return Inertia::render('Users/index', [
         'users' => User::query()->when($search, fn ($query) =>
         $query->where('name', 'LIKE', "%{$search}%")
     )->orderByDesc('created_at')
@@ -42,7 +42,7 @@ class UserController extends Controller
     public function create()
     {
         //
-        return Inertia::render('UserCreate');
+        return Inertia::render('Users/Create');
     }
 
     /**
