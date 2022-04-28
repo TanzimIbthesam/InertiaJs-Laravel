@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
@@ -17,13 +18,16 @@ class UserController extends Controller
      */
     public function __construct() 
     {
-      $this->middleware('auth');
+      $this->middleware('auth')->only('index');
     }
     public function index(Request $request)
     {
         //
         $search = $request->query('search');
     return Inertia::render('Users/index', [
+        // 'can' => [
+        //     'create_user' => Auth::user()->can('users.create'),
+        // ],
         'users' => User::query()->when($search, fn ($query) =>
         $query->where('name', 'LIKE', "%{$search}%")
     )->orderByDesc('created_at')
@@ -35,7 +39,11 @@ class UserController extends Controller
     ->withQueryString(),
     // $search = $request->query('search');
         
-            'filters' => $request->only(['search'])
+            'filters' => $request->only(['search']),
+            'can' => [
+                'createUser' => Auth::user()->can('create-user', User::class)
+            ]
+            
     ]);
     }
     /**
@@ -46,7 +54,18 @@ class UserController extends Controller
     public function create()
     {
         //
-        return Inertia::render('Users/Create');
+       
+        return Inertia::render('Users/Create',[
+            
+        ]);
+    }
+    public function createuser()
+    {
+        //
+       
+        return Inertia::render('Users/Create',[
+            
+        ]);
     }
 
     /**

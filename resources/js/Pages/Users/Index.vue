@@ -4,6 +4,8 @@
   <h1 class="text-3xl">
     <div class="flex justify-between">
       <div>Users</div>
+        <Link v-if="can.createUser" :href="route('usercreate')" class="text-blue-500 text-sm ml-3">New User</Link>
+    
       <div> <input  type="text" v-model="search" placeholder="Search..." class="border px-2 rounded-lg" /></div>
     </div>
   </h1>
@@ -22,7 +24,6 @@
             <th class="text-left p-4 font-medium">
                Name
             </th>
-            
          </tr>
       </thead>
       <tbody>
@@ -71,6 +72,7 @@ import { Inertia } from '@inertiajs/inertia';
 let props = defineProps({
   users: Object,
   filters: Object,
+  can:Object
 });
 let search = ref(props.filters.search);
 watch(search, value => {

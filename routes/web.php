@@ -31,7 +31,10 @@ Route::get('login', [AuthController::class, 'create'])->name('login');
 Route::post('login', [AuthController::class, 'store'])->name('login.store');
 
 Route::middleware(['auth'])->group(function(){
-    Route::resource('users',UserController::class);
+    // Route::resource('users',UserController::class)->only('users');
+    Route::resource('users', UserController::class)->except('users.create');
     Route::post('logout',[AuthController::class,'destroy']);
     Route::get('settings',[SettingsController::class,'index'])->name('settings');
+   
 });
+Route::get('createuser',[UserController::class,'create'])->name('usercreate')->middleware(['auth','can:createUser"']);

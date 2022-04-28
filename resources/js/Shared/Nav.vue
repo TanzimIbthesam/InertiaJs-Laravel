@@ -1,4 +1,5 @@
 <template>
+{{user.email}}
 <ul class="flex justify-left">
    
     <li>
@@ -11,21 +12,30 @@
     
     </li>
     <li>
-    <!-- <Navlink
-      href='/settings'
-    :active="$page.component==='Settings'"> 
-    Settings
-    </Navlink> -->
+ 
     <Navlink
       :href="route('settings')"
     :active="$page.component==='Settings'"> 
     Settings
     </Navlink>
     </li>
+     <li> 
+     
+
+    </li>
     <li> 
         <Navlink
      :href="route('users.index')"
     :active="$page.component==='Users'"> 
+    Users
+    </Navlink>
+
+    </li>
+    <li> 
+        <Navlink
+        v-if="user.email==='tanzim@gmail.com'"
+     :href="route('users.create')"
+    :active="$page.component==='Users/Create'"> 
     Users
     </Navlink>
 
@@ -40,9 +50,12 @@
 </template>
 
 <script setup>
+import { computed } from '@vue/reactivity';
 //import Link Not needed when using a Global component in app.js
+import { usePage } from '@inertiajs/inertia-vue3'
 import { Link } from '@inertiajs/inertia-vue3'
- import Navlink from './Navlink.vue'
+ import Navlink from './Navlink.vue';
+  const user = computed(() => usePage().props.value.auth.user)
 </script>
 
 <style>

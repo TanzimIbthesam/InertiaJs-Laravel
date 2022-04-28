@@ -8,7 +8,7 @@
 				</h2>
 				
 			</div>
-			<form @submit.prevent="handleSubmit" class="mt-8 space-y-6" >
+			<form v-if="can.userCreate"  @submit.prevent="handleSubmit" class="mt-8 space-y-6" >
 				
 				<div class="rounded-md shadow-sm -space-y-px">
                     <div>
