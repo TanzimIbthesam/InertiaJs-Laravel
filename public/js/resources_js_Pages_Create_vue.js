@@ -1,10 +1,10 @@
 "use strict";
-(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Users_vue"],{
+(self["webpackChunk"] = self["webpackChunk"] || []).push([["resources_js_Pages_Create_vue"],{
 
-/***/ "./resources/js/Pages/Users.vue":
-/*!**************************************!*\
-  !*** ./resources/js/Pages/Users.vue ***!
-  \**************************************/
+/***/ "./resources/js/Pages/Create.vue":
+/*!***************************************!*\
+  !*** ./resources/js/Pages/Create.vue ***!
+  \***************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 const script = {}
 
 ;
-const __exports__ = /*#__PURE__*/(0,C_Users_Tanzim_Desktop_Laravel_Inertia_InertiaJs_Laravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__["default"])(script, [['__file',"resources/js/Pages/Users.vue"]])
+const __exports__ = /*#__PURE__*/(0,C_Users_Tanzim_Desktop_Laravel_Inertia_InertiaJs_Laravel_node_modules_vue_loader_dist_exportHelper_js__WEBPACK_IMPORTED_MODULE_0__["default"])(script, [['__file',"resources/js/Pages/Create.vue"]])
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (__exports__);
 

@@ -7,7 +7,7 @@
     >
   </Head>
 <div class="flex justify-between bg-gray-200  px-4 py-2 font-serif">
- Welcome-{{$page.props.auth.user.username}}
+ Welcome-{{username.name}}
   <Nav />
 </div>
 <!--   -->
@@ -17,10 +17,12 @@
   <slot />
 </template>
 
+// 
 <script setup>
-import Nav from './Nav.vue'
+import { computed } from 'vue'
+import { usePage } from '@inertiajs/inertia-vue3'
+
+import Nav from '../Shared/Nav.vue'
+
+ const username = computed(() => usePage().props.value.auth.user)
 </script>
-
-<style>
-
-</style>

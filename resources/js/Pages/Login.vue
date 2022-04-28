@@ -1,69 +1,59 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-		<div class="max-w-md w-full space-y-8">
-			<div>
-				<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
-				<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-					Sign up
-				</h2>
-				
-			</div>
-			<form @submit.prevent="handleSubmit" class="mt-8 space-y-6" >
-				
-				<div class="rounded-md shadow-sm -space-y-px">
-                   
-					<div>
-						<label for="email-address" class="sr-only">Email address</label>
-						<input id="email-address" v-model="form.email" type="email"   class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address">
-                         <div v-if="form.errors.email">{{ form.errors.email}}</div>
+  <Head title="Log In" />
 
-					</div>
-					<div>
-						<label for="password" class="sr-only">Password</label>
-						<input id="password" v-model="form.password" type="password"  class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
-                         <div v-if="form.errors.password">{{ form.errors.password }}</div>
-					</div>
-				</div>
+  <main class="grid place-items-center min-h-screen">
+    <section class="bg-white p-8 rounded-xl max-w-md mx-auto border w-full">
+      <h1 class="text-3xl mb-6">Log In</h1>
 
-				<!--  -->
+      <form @submit.prevent="submit">
+        <div class="mb-6">
+          <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="email"> Email </label>
 
-				<div>
-					<button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-						<span class="absolute left-0 inset-y-0 flex items-center pl-3">
-							<!-- Heroicon name: solid/lock-closed -->
-							<svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="True">
-								<path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
-							</svg>
-						</span>
-						Sign in
-					</button>
-				</div>
-			</form>
-		</div>
-	</div>
+          <input v-model="form.email" class="border p-2 w-full rounded" type="email" name="email" id="email"  />
+
+          <div v-if="form.errors.email" v-text="form.errors.email" class="text-red-500 text-xs mt-1"></div>
+        </div>
+
+        <div class="mb-6">
+          <label class="block mb-2 uppercase font-bold text-xs text-gray-700" for="password"> Password </label>
+
+          <input
+            v-model="form.password"
+            type="password"
+            class="border p-2 w-full rounded"
+           
+          />
+
+          <div v-if="form.errors.password" v-text="form.errors.password" class="text-red-500 text-xs mt-1"></div>
+        </div>
+
+        <div>
+          <button
+            type="submit"
+            class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+            :disabled="form.processing"
+          >
+            Log In
+          </button>
+        </div>
+      </form>
+    </section>
+  </main>
 </template>
 
+
+
 <script setup>
-import { useForm } from "@inertiajs/inertia-vue3";
-let form=useForm({
-   
-    email:'',
-    password:''
+import { useForm } from '@inertiajs/inertia-vue3';
+defineProps({
+    layout: null,
+});
+let form = useForm({
+  email: '',
+  password: '',
+});
 
-})
-const props=defineProps({
-    errors:{
-        type:Object
-    }
-})
-const handleSubmit=()=>{
-    //  Inertia.post('/users', form);
-    //Much cleaner way 
-    form.post('/userlogin',form);
-   
-}
+let submit = () => {
+  form.post(route('login.store'));
+};
 </script>
-
-<style>
-
-</style>

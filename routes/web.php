@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SettingsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
-use App\Models\User;
- use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,92 +18,20 @@ use Illuminate\Support\Facades\DB;
 |
 */
 //Routing in Inertia
-Route::get('/', function () {
-    // return view('welcome');
-    return inertia('Welcome',[
-        'name'=>'Tanzim',
-         'frameworks'=>[
-             'Laravel','Inertia','Vue'
-         ]
-    ]);
-    // return Inertia::render('Welcome',[
-    //     'name'=>'Tanzim',
-    //          'frameworks'=>[
-    //              'Laravel','Inertia','Vue'
-    //          ]
-    // ]);
-})->name('home');
+Route::get('/', [HomeController::class,'index'])->name('home');
  
-// Route::get('/users',function(){
-//  return Inertia::render('Users',[
-//      'time'=>now()->toTimeString()
-//  ]);
-// })->name('users');
-// Route::get('/users', function (Request $request) {
-//     // return User::paginate(10);
-//     return Inertia::render('Users', [
-//         'time' => now()->toTimeString(),
-//         'users' => User::query()
-//         ->when($request->input('search'), function ($query, $search) {
-//             $query->where('name', 'like', "%{$search}%");
-//         })
-//         ->withQueryString()
-//         ->paginate(10)
-        
-       
-//         ->through(fn($user)=>[
-//             'id'=>$user->id,
-//              'name'=>$user->name
-//         ]),
-//         // 'users'=>User::select('email')->first()->get()
-//         // User::all()
-//         'filters' => $request->input('search')
-//         ]);
 
 
-// })->name('users');
-// Route::get('/users', function (Request $request) {
-//      $search = $request->query('search');
-//     return Inertia::render('Users', [
-//         'users' => User::query()->when($search, fn ($query) =>
-//         $query->where('name', 'LIKE', "%{$search}%")
-//     )->orderByDesc('created_at')
-//     ->paginate(10)
-//     ->through(fn($user) => [
-//         'id' => $user->id,
-//         'name' => $user->name
-// ])
-//     ->withQueryString(),
-//     // $search = $request->query('search');
-        
-//             'filters' => $request->only(['search'])
-            
-//             // ->through(fn($user) => [
-//             //     'id' => $user->id,
-//             //     'name' => $user->name
-//             // ]),
 
-//         //   'filters' => $request->only(['search'])
-//     ]);
-// })->name('users');
-Route::resource('users',UserController::class);
-Route::post('/users/store',[UserController::class,'store']);
-Route::get('/settings',function(){
-//  return inertia('Settings');
-return Inertia::render('Settings');
-})->name('settings');
 
-Route::post('/logout',function(){
-    //  dd('Logout');
-     //dd foo
-     dd(request('foo'));
+
+
+
+Route::get('login', [AuthController::class, 'create'])->name('login');
+Route::post('login', [AuthController::class, 'store'])->name('login.store');
+
+Route::middleware(['auth'])->group(function(){
+    Route::resource('users',UserController::class);
+    Route::post('logout',[AuthController::class,'destroy']);
+    Route::get('settings',[SettingsController::class,'index'])->name('settings');
 });
-
-Route::get('/login',[AuthController::class,'index'])->name('loginpage');
-Route::post('/userlogin',[AuthController::class,'authenticate'])->name('userlogin');
-
-Route::get('/testnew',function(){
-      return Inertia::render('Test/index');
-    
-    })->name('testnew');
-    
