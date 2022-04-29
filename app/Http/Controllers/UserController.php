@@ -18,7 +18,7 @@ class UserController extends Controller
      */
     public function __construct() 
     {
-      $this->middleware('auth')->only('index');
+         $this->middleware("auth")->except(["signupuser"]);
     }
     public function index(Request $request)
     {
@@ -41,7 +41,7 @@ class UserController extends Controller
         
             'filters' => $request->only(['search']),
             'can' => [
-                'createUser' => Auth::user()->can('create-user', User::class)
+                'createUser' => Auth::user()->can('createUser', User::class)
             ]
             
     ]);
@@ -51,23 +51,23 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+   
+    public function createadmineuser(Request $request)
     {
         //
+    
+        return Inertia::render('Users/AdminCreate');
        
-        return Inertia::render('Users/Create',[
-            
-        ]);
+       
     }
-    public function createuser()
+    public function signupuser(Request $request)
     {
         //
+    
+        return Inertia::render('Users/UserCreate');
        
-        return Inertia::render('Users/Create',[
-            
-        ]);
+       
     }
-
     /**
      * Store a newly created resource in storage.
      *

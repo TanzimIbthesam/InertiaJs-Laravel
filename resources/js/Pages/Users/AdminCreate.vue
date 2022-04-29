@@ -1,14 +1,15 @@
+
 <template>
   <div class="min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
 		<div class="max-w-md w-full space-y-8">
-			<div>
+			
 				<img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
 				<h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
 					Sign up
 				</h2>
-				
-			</div>
-			<form v-if="can.userCreate"  @submit.prevent="handleSubmit" class="mt-8 space-y-6" >
+			
+		    
+			<form   @submit.prevent="handleSubmit" class="mt-8 space-y-6" >
 				
 				<div class="rounded-md shadow-sm -space-y-px">
                     <div>
@@ -54,12 +55,15 @@ let form=useForm({
     name:'',
     email:'',
     password:''
-
 })
 defineProps({
     errors:{
-        type:Object
-    }
+        type:Object,
+    },
+	can:{
+		type:Object
+	}
+   
 })
 const handleSubmit=()=>{
     //  Inertia.post('/users', form);
@@ -70,5 +74,4 @@ const handleSubmit=()=>{
 </script>
 
 <style>
-
 </style>

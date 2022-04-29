@@ -34,8 +34,8 @@
     <li> 
         <Navlink
         v-if="user.email==='tanzim@gmail.com'"
-     :href="route('users.create')"
-    :active="$page.component==='Users/Create'"> 
+     :href="route('usercreate')"
+    :active="$page.component==='Users/AdminCreate'"> 
     Users
     </Navlink>
 

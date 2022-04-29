@@ -14,5 +14,8 @@ class UserPolicy
      *
      * @return void
      */
-   
+    public function createUser(User $user)
+    {
+        return $user->id=11;
+    }
 }

@@ -237,8 +237,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["href", "active"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [$setup.user.email === 'tanzim@gmail.com' ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Navlink"], {
     key: 0,
-    href: _ctx.route('users.create'),
-    active: _ctx.$page.component === 'Users/Create'
+    href: _ctx.route('usercreate'),
+    active: _ctx.$page.component === 'Users/AdminCreate'
   }, {
     "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
       return [_hoisted_6];
@@ -663,13 +663,21 @@ var map = {
 		"./resources/js/Pages/Users/index.vue",
 		"resources_js_Pages_Users_index_vue"
 	],
-	"./Users/Create": [
-		"./resources/js/Pages/Users/Create.vue",
-		"resources_js_Pages_Users_Create_vue"
+	"./Users/AdminCreate": [
+		"./resources/js/Pages/Users/AdminCreate.vue",
+		"resources_js_Pages_Users_AdminCreate_vue"
 	],
-	"./Users/Create.vue": [
-		"./resources/js/Pages/Users/Create.vue",
-		"resources_js_Pages_Users_Create_vue"
+	"./Users/AdminCreate.vue": [
+		"./resources/js/Pages/Users/AdminCreate.vue",
+		"resources_js_Pages_Users_AdminCreate_vue"
+	],
+	"./Users/UserCreate": [
+		"./resources/js/Pages/Users/UserCreate.vue",
+		"resources_js_Pages_Users_UserCreate_vue"
+	],
+	"./Users/UserCreate.vue": [
+		"./resources/js/Pages/Users/UserCreate.vue",
+		"resources_js_Pages_Users_UserCreate_vue"
 	],
 	"./Users/index": [
 		"./resources/js/Pages/Users/index.vue",
