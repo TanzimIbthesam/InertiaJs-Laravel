@@ -619,6 +619,30 @@ var map = {
 		"./resources/js/Pages/Login.vue",
 		"resources_js_Pages_Login_vue"
 	],
+	"./Posts": [
+		"./resources/js/Pages/Posts/index.vue",
+		"resources_js_Pages_Posts_index_vue"
+	],
+	"./Posts/": [
+		"./resources/js/Pages/Posts/index.vue",
+		"resources_js_Pages_Posts_index_vue"
+	],
+	"./Posts/create": [
+		"./resources/js/Pages/Posts/create.vue",
+		"resources_js_Pages_Posts_create_vue"
+	],
+	"./Posts/create.vue": [
+		"./resources/js/Pages/Posts/create.vue",
+		"resources_js_Pages_Posts_create_vue"
+	],
+	"./Posts/index": [
+		"./resources/js/Pages/Posts/index.vue",
+		"resources_js_Pages_Posts_index_vue"
+	],
+	"./Posts/index.vue": [
+		"./resources/js/Pages/Posts/index.vue",
+		"resources_js_Pages_Posts_index_vue"
+	],
 	"./Settings": [
 		"./resources/js/Pages/Settings.vue",
 		"resources_js_Pages_Settings_vue"
@@ -626,22 +650,6 @@ var map = {
 	"./Settings.vue": [
 		"./resources/js/Pages/Settings.vue",
 		"resources_js_Pages_Settings_vue"
-	],
-	"./Test": [
-		"./resources/js/Pages/Test/index.vue",
-		"resources_js_Pages_Test_index_vue"
-	],
-	"./Test/": [
-		"./resources/js/Pages/Test/index.vue",
-		"resources_js_Pages_Test_index_vue"
-	],
-	"./Test/index": [
-		"./resources/js/Pages/Test/index.vue",
-		"resources_js_Pages_Test_index_vue"
-	],
-	"./Test/index.vue": [
-		"./resources/js/Pages/Test/index.vue",
-		"resources_js_Pages_Test_index_vue"
 	],
 	"./Users": [
 		"./resources/js/Pages/Users.vue",
