@@ -38,8 +38,16 @@ Route::middleware(['auth'])->group(function(){
     Route::post('logout',[AuthController::class,'destroy']);
     Route::get('settings',[SettingsController::class,'index'])->name('settings');
      
-    Route::resource('posts',PostController::class);
+    
     Route::get('createuser',[UserController::class,'createadmineuser'])->name('usercreate')->middleware('can:admin.secret'); 
+    Route::resource('posts',PostController::class)->except(["edit"]);
+    Route::get('posts/{post}/edit',[PostController::class,'edit'])->name('posts.edit');
+  
 });
 
 Route::get('signup',[UserController::class,'signupuser'])->name('signupuser');
+
+Route::get('hello',function(){
+echo "hello World";
+});
+

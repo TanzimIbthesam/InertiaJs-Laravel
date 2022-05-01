@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
+use App\Http\Resources\UserResource;
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,9 +30,7 @@ class UserController extends Controller
         // 'can' => [
         //     'create_user' => Auth::user()->can('users.create'),
         // ],
-        'users' => User::query()->when($search, fn ($query) =>
-        $query->where('name', 'LIKE', "%{$search}%")
-    )->orderByDesc('created_at')
+        'users' => User::query()->orderByDesc('created_at')
     ->paginate(10)
     ->through(fn($user) => [
         'id' => $user->id,
@@ -55,7 +55,7 @@ class UserController extends Controller
     public function createadmineuser(Request $request)
     {
         //
-    
+           
         return Inertia::render('Users/AdminCreate');
        
        
@@ -63,7 +63,9 @@ class UserController extends Controller
     public function signupuser(Request $request)
     {
         //
-    
+          if($request->user()){
+              return redirect()->back();
+          }
         return Inertia::render('Users/UserCreate');
        
        
@@ -91,6 +93,15 @@ class UserController extends Controller
     public function show($id)
     {
         //
+        // return new UserResource(User::findOrFail($id));
+      return Inertia::render('Users/UserPosts',[
+            'userPosts'=>User::findorFail($id)->posts,
+            'user'=>User::findorFail($id)
+      ]);
+       
+       
+    
+         
     }
 
     /**

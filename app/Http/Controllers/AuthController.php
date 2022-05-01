@@ -10,7 +10,10 @@ use Inertia\Inertia;
 class AuthController extends Controller
 {
     //
-    public function create(){
+    public function create(Request $request){
+        if($request->user()){
+            return redirect()->back();
+        }
         return Inertia::render('Login');
     }
     public function store(Request $request)

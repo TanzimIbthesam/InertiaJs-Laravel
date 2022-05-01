@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
+use App\Http\Requests\PostUpdateRequest;
+use App\Http\Resources\PostCollection;
+use App\Http\Resources\PostResource;
+use App\Http\Resources\UserResource;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
@@ -15,10 +20,19 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request,Post $post,User $user)
     {
-        //
-          return Inertia::render('Posts/index');
+        // $this->authorize('editPost');
+        // return Post::with('user')->get();
+        // return new PostCollection(Post::query()->paginate(3));
+        // return Post::with('user')->get();
+        // return new PostCollection(Post::query()->paginate(4));
+        // $this->authorize('editPost');
+        return Inertia::render('Posts/index',[
+             'posts'=>new PostCollection(Post::query()->paginate(10)),
+            
+            
+        ]);
     }
 
     /**
@@ -56,7 +70,9 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        //
+        return Inertia::render('Posts/PostDetail',[
+          'post'=>new PostResource(Post::findOrFail($id))
+        ]);
     }
 
     /**
@@ -67,8 +83,14 @@ class PostController extends Controller
      */
     public function edit($id)
     {
+        // $this->authorize('view');
         //
+        // return new PostResource(Post::findOrFail($id));
+       return Inertia::render('Posts/EditPost',[
+            'post'=>new PostResource(Post::findOrFail($id))
+        ]);
     }
+   
 
     /**
      * Update the specified resource in storage.
@@ -77,9 +99,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(PostUpdateRequest $request, $id)
     {
         //
+        $post=Post::find($id);
+        $post->title=$request->input('title');
+        $post->description=$request->input('description');
+        $post->update();
     }
 
     /**
@@ -91,5 +117,7 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+        Post::find($id)->delete();
+        return redirect()->route('posts.index');
     }
 }

@@ -107,7 +107,7 @@
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if ({"resources_js_Pages_index_vue":1,"resources_js_Pages_Create_vue":1,"resources_js_Pages_Login_vue":1,"resources_js_Pages_Posts_index_vue":1,"resources_js_Pages_Posts_create_vue":1,"resources_js_Pages_Settings_vue":1,"resources_js_Pages_Users_vue":1,"resources_js_Pages_Users_index_vue":1,"resources_js_Pages_Users_AdminCreate_vue":1,"resources_js_Pages_Users_UserCreate_vue":1,"resources_js_Pages_Welcome_vue":1}[chunkId]) return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_Pages_index_vue":1,"resources_js_Pages_Create_vue":1,"resources_js_Pages_Login_vue":1,"resources_js_Pages_Posts_index_vue":1,"resources_js_Pages_Posts_EditPost_vue":1,"resources_js_Pages_Posts_PostDetail_vue":1,"resources_js_Pages_Posts_create_vue":1,"resources_js_Pages_Settings_vue":1,"resources_js_Pages_Users_vue":1,"resources_js_Pages_Users_index_vue":1,"resources_js_Pages_Users_AdminCreate_vue":1,"resources_js_Pages_Users_UserCreate_vue":1,"resources_js_Pages_Users_UserPosts_vue":1,"resources_js_Pages_Welcome_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};

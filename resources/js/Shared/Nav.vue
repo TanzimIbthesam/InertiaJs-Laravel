@@ -53,7 +53,7 @@
 import { computed } from '@vue/reactivity';
 //import Link Not needed when using a Global component in app.js
 import { usePage } from '@inertiajs/inertia-vue3'
-import { Link } from '@inertiajs/inertia-vue3'
+
  import Navlink from './Navlink.vue';
   const user = computed(() => usePage().props.value.auth.user)
 </script>

@@ -8,7 +8,7 @@
 				</h2>
 				
 			</div>
-			<form   @submit.prevent="handleSubmit" class="mt-8 space-y-6" >
+			<form  @submit.prevent="handleSubmit"  class="mt-8 space-y-6" >
 				
 				<div class="rounded-md shadow-sm space-y-2">
                    
@@ -35,7 +35,7 @@
 								<path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
 							</svg>
 						</span>
-						Sign in
+						Sign in-{{form.id}}
 					</button>
 				</div>
 			</form>
@@ -50,21 +50,26 @@ import { onMounted,computed,ref } from "vue";
 // onMounted(()=>{
 //   console.log("Hello",user.value.id);
 // })
+
+const props=defineProps({
+   
+       post:{
+           type:Object
+       }
+   
+})
 let form=useForm({
-    title:'',
-    description:'',
+    title:props.post.data.title,
+    description:props.post.data.description,
+    id:props.post.data.id
   
 
-})
-defineProps({
-    errors:{
-        type:Object
-    }
 })
 const handleSubmit=()=>{
     //  Inertia.post('/users', form);
     //Much cleaner way 
-    form.post(route('posts.store'));
+    // form.post(route('posts.store'),form);
+    form.put(route('posts.update',form.id));
    
 }
 </script>
