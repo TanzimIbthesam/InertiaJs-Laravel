@@ -11,6 +11,7 @@ use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
 class PostController extends Controller
@@ -28,6 +29,7 @@ class PostController extends Controller
         // return Post::with('user')->get();
         // return new PostCollection(Post::query()->paginate(4));
         // $this->authorize('editPost');
+        // return new PostCollection(Post::query()->paginate(10));
         return Inertia::render('Posts/index',[
              'posts'=>new PostCollection(Post::query()->paginate(10)),
             
@@ -59,9 +61,41 @@ class PostController extends Controller
         $post->title=$request->input('title');
         $post->description=$request->input('description');
         $post->user_id=$request->user()->id;
+       
+        if($request->hasFile('image')){
+            //Image upload
+                $filenameWithExt = $request->file('image')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $request->file('image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+             
+            $request->file('image')->storeAs('public/product_images',$fileNameToStore);
+              
+            
+          
+                 
+                    $post->image = $fileNameToStore;
+                 
+              
+             
+            $post->save();
+         
+         
+    }else{
+        
+      
+             
+                $post->image = null;
+             
+          
+         
         $post->save();
     }
-
+   
+    }
     /**
      * Display the specified resource.
      *
@@ -105,7 +139,30 @@ class PostController extends Controller
         $post=Post::find($id);
         $post->title=$request->input('title');
         $post->description=$request->input('description');
-        $post->update();
+        if($request->hasFile('image')){
+            //Image upload
+                $filenameWithExt = $request->file('image')->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $request->file('image')->getClientOriginalExtension();
+                // Filename to store
+                $fileNameToStore= $filename.'_'.time().'.'.$extension;
+             
+            $request->file('image')->storeAs('public/product_images',$fileNameToStore);
+              
+            
+          
+                 
+                    $post->image = $fileNameToStore;
+                 
+              
+             
+            
+         
+         
+    }
+    $post->update();  
     }
 
     /**
@@ -117,7 +174,13 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
-        Post::find($id)->delete();
+        $post=Post::find($id);
+        if($post->image != null){
+            // Delete Image
+            Storage::delete('public/product_images/'.$post->image);
+        }
+        
+        $post->delete();
         return redirect()->route('posts.index');
     }
 }

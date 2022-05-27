@@ -24,8 +24,9 @@ class PostUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'title'=>'max:255',
-        'description' => 'max:255',
+            'title'=>'nullable|max:255',
+        'description' => 'nullable|max:255',
+      'image'=>'image|mimes:jpeg,png,jpg,gif|max:2048'
         
         ];
     }
